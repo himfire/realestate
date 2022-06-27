@@ -19,8 +19,4 @@ public class Auditable {
 
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
-
-
-    // TODO
-    //    @CreatedBy
 }

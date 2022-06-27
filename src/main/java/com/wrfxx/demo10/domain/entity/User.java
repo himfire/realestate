@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-//Admin,Customer,Developer
+//Admin,Client,User
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,7 +47,10 @@ public class User extends Auditable{
     private String nationalId;
     private String nationalAddress;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Project> project;
+
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Reservation> reservations = new ArrayList<>();
     private ApplicationRoleUser authority;
     private boolean isSubscribedToNewsletter = true;

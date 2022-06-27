@@ -16,7 +16,6 @@ public class CustomerSignUpDTO {
     private String name;
     private String email;
     private String username;
-    @Embedded
     private String phone;
     private String password;
     private String address;

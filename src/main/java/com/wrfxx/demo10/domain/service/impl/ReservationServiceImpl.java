@@ -9,9 +9,11 @@ import com.wrfxx.demo10.exceptions.CustomException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -30,16 +32,28 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Page<Reservation> getAllReservations(Map<String, Object> filterOption) {
+    public List<Reservation> getAllReservations() {
 
         try{
-            return null;
+            return reservationRepository.findAll();
         }catch (Exception e){
             throw CustomException.builder()
                     .code(e.getMessage())
                     .status(HttpStatus.BAD_REQUEST)
                     .build();
         }
+    }
+
+    @Override
+    public Page<Reservation> getReservationsByUnitNoAndProjectId(String unitNo,
+                                                                 Long projectId,
+                                                                 Pageable pageable) {
+        return reservationRepository.findByUnitNoAndProjectId(unitNo,projectId,pageable);
+    }
+
+    @Override
+    public List<Reservation> getReservationsByUser(Long userId) {
+        return reservationRepository.findAll();
     }
 
     public ReservationRequestDTO getReservation(Long reservationId){
@@ -55,7 +69,10 @@ public class ReservationServiceImpl implements ReservationService {
     public void createReservation(ReservationRequestDTO dto) {
         Reservation reservation = modelMapper.map(dto, Reservation.class);
         reservationRepository.save(reservation);
-        mailService.sendEmail(dto.getEmail(),"test","We are testing");
+        mailService.sendEmail(
+                dto.getUser().getEmail(),
+                "Thank you for your request",
+                "We will contact you shortly");
     }
 
     @Override

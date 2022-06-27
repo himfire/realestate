@@ -8,7 +8,7 @@ import static com.wrfxx.demo10.domain.value.enumurator.ApplicationUserPermission
 
 public enum ApplicationRoleUser {
 
-    CUSTOMER(Sets.newHashSet()),DEVELOPER(Sets.newHashSet(PROJECT_READ)),ADMIN(Sets.newHashSet(PROJECT_READ,PROJECT_WRITE));
+    CUSTOMER(Sets.newHashSet()), CLIENT(Sets.newHashSet(PROJECT_READ,PROJECT_WRITE)),ADMIN(Sets.newHashSet(PROJECT_READ,PROJECT_WRITE));
     private final Set<ApplicationUserPermissions> permissions;
 
     ApplicationRoleUser(Set<ApplicationUserPermissions> permissions) {

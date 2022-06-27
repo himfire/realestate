@@ -6,6 +6,7 @@ import com.wrfxx.demo10.domain.value.dto.CustomerSignUpDTO;
 import com.wrfxx.demo10.domain.value.dto.DeveloperSignUpDTO;
 import com.wrfxx.demo10.domain.value.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.C;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -61,6 +62,7 @@ public class UserController {
     public Page<UserDTO> getAllUsers2(@RequestParam Map<String, Object> queries) {
         return userService.getAllUsers(queries);
     }*/
+
 
     @GetMapping("/{id}")
 /*    @PreAuthorize("@userService.hasAccess(#id)") // AOP*/

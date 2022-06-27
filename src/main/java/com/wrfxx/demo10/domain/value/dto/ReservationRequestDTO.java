@@ -1,8 +1,6 @@
 package com.wrfxx.demo10.domain.value.dto;
 
-import com.wrfxx.demo10.domain.entity.Address;
-import com.wrfxx.demo10.domain.entity.Phone;
-import com.wrfxx.demo10.domain.entity.Project;
+import com.wrfxx.demo10.domain.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,22 +14,12 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ReservationRequestDTO {
+public class ReservationRequestDTO extends Auditable {
     private Long id;
+    private boolean isPaid;
+    private boolean agreeTerms;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    @Embedded
-    private Phone phone;
-    @Embedded
-    private Address address;
-    private Long jobClassification;
-    private String job;
-    private Long nationalId;
-    @OneToOne
-    private Project project;
-    private Long unitNumber;
-    private Long buildingNumber;
-    private String floor;
+    private ReservationStatus reservationStatus;
+    private UserDTO user;
+    private UnitDTO unit;
 }
